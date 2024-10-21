@@ -18,11 +18,12 @@ async def on_message(message: cl.Message):
             # Convert CSV to DataFrame
             df = pd.read_csv(io.StringIO(csv_data))
             df = change_column_names(df)
-            print(f'\Data: {df}\n')
+            print(f'\nData: {df}\n')
 
             # Get query for the question
             query = await getQuery(message.content)
             query = query.replace("```sql\n", "").replace("```", "")
+            print(f'\nQuery: {query}\n')
 
             # Run query on database
             result = sqldf(query, env=None)
